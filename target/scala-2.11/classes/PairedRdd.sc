@@ -1,5 +1,9 @@
+
 import org.apache.log4j.{Level, Logger}
 import org.apache.spark.{SparkConf, SparkContext}
+import org.spark_project.guava.collect.Iterables
+
+
 
 
 Logger.getLogger("apache.org").setLevel(Level.WARN)
@@ -19,16 +23,22 @@ sc.version
 
 val logRdd = sc.parallelize(list)
 
-//val pariredRdd = logRdd.map(value => {
-//  val full = value.split(":")
-//  (full(0),1L)
-//})
-//
-//
-//pariredRdd.reduceByKey((first,second)=>first+second).collect()
-//
-//
-//
+val pariredRdd = logRdd.map(value => {
+//  val full =
+  (value.split(":")(0),1L)
+}).reduceByKey((first,second)=>first+second).collect()
+
+
+
+val pariredRdd_grpBy = logRdd.map(value => {
+  //  val full =
+  (value.split(":")(0),1L)
+}).groupByKey().foreach(t=>println(t._1+"has " + t._2.size +" instance "))
+
+//pariredRdd.reduceByKey(
+
+
+
 
 
 

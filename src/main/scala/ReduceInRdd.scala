@@ -12,7 +12,7 @@ object ReduceInRdd extends  App {
 //  list.add(30.2)
 //  list.add(11.3)
 
-  Logger.getLogger("apache.org").setLevel(Level.WARN)
+  Logger.getLogger("org.apache").setLevel(Level.ERROR)
 
   val list = List(10.2,3.6,20.4,56.3)
 
