@@ -55,11 +55,33 @@ val courseView_Completed = courseWatchCount
   .map(x=>(x._1,x._2._1._1,x._2._1._2.toFloat,x._2._2))
 
 //.take(100).foreach(println(_))
-//course,user,completedChapCOunt,Totalchapcount,percent_completed
-val courseView_withPercentage = courseView_Completed.map(x => (x,Math.round(x._3/x._4 * 100)))
-  .take(100).foreach(println(_))
+//course,user,completedChapCOunt,Totalchapcount,percent_completed,score
+
+//course,score
+val courseView_withPercentage = courseView_Completed
+  .map(x => (x._1,Math.round(x._3/x._4 * 100)))
+  .mapValues(x=>{
+    if ( x>90) 10L
+    else if (x>50 && x<90) 4L
+    else if (x>25 && x<50) 2L
+    else 0L
+  })
+//  .take(100).foreach(println(_))
 println("percentage -------")
 
+//courseId,score
+val courseWithScore = courseView_withPercentage
+  .reduceByKey((x,y)=>x+y)
+  .sortByKey(false)
+  .take(100)
+  .foreach(println(_))
+
+
+//courseWithScore.map(x=>((x._1,x._6),1L))
+//  .reduceByKey((x,y)=>x+y)
+//  .sortBy(x=>x._2,false)
+//  .take(20)
+//  .foreach(println(_))
 //
 //val a = 7
 //val b = 10
