@@ -5,7 +5,7 @@ val sc = SparkSession.builder().appName("Spark-sql")
 
 val dataset = sc.read
   .option("header", true)
-  .csv("E:\\BDF\\sparkdata\\resources_sfj\\exams\\students.csv")
+  .csv("C:\\Niranjan\\Practice\\spark\\spark_learning_niranjan\\src\\main\\resources\\students.csv")
 
 dataset.show()
 val cnt = dataset.count()

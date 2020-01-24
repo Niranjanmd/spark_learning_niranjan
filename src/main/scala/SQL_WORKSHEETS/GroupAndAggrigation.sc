@@ -7,7 +7,7 @@ val spark = SparkSession.builder().appName("aggrigation")
 
 val dataset = spark.read
   .option("header", true)
-  .csv("E:\\BDF\\sparkdata\\resources_sfj\\exams\\students.csv")
+  .csv("C:\\Niranjan\\Practice\\spark\\spark_learning_niranjan\\src\\main\\resources\\students.csv")
 
 
 dataset.printSchema()
